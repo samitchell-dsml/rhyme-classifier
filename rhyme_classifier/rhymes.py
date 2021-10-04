@@ -38,16 +38,16 @@ def rhymes(word1, word2):
     
     Returns
     -------
-    int
-        1 if the words rhyme, 0 if they don't
+    bool
+        True if the words rhyme, False if they don't
     '''
 
-    rhyme = 0
+    rhyme = False
 
     for pron1 in cmudict.dict()[word1]:
         for pron2 in cmudict.dict()[word2]:
             if rhyme_sound(pron1) == rhyme_sound(pron2):
-                rhyme = 1
+                rhyme = True
                 break
 
     return rhyme
