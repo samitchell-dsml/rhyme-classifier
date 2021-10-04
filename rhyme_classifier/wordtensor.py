@@ -1,8 +1,13 @@
-import numpy as np
+'''
+Gives a function to turn a word stored in a string into a tensor
+for processing by a neural network.
+'''
+
 import torch
 
-def chrvec(char):
-    """Creates a row-vector representing the letter's position
+def chartensor(char):
+    '''
+    Creates a tensor of shape (26) representing the letter's position
 
     Parameters
     ----------
@@ -11,19 +16,21 @@ def chrvec(char):
 
     Returns
     -------
-    numpy array
-        a 26 element row with a 1 in the position the letter holds
+    torch tensor
+        a tensor of shape (26) with a 1 in the position the letter holds
         in the alphabet
-    """
-
+    '''
     i = ord(char) - ord('a')
-    x = np.zeros(26)
+    x = torch.zeros((26,))
     x[i] = 1.0
+
+    print(x.shape)
 
     return x
 
 def wordtensor(word):
-    '''Returns a tensor representing the word 
+    '''
+    Returns a tensor representing the word 
     
     The longest word in the unix words list has 24 letters, so
     we take this as the maximum number of rows needed for our
@@ -40,13 +47,13 @@ def wordtensor(word):
     Returns
     -------
     torch tensor
-        An tensor of shape (24, 26) representing the word as a
+        a tensor of shape (24, 26) representing the word as a
         matrix for processing in a neural network
     '''
 
-    vec = np.zeros((24,26))
+    x = torch.zeros((24,26))
 
     for i in range (0,len(word)):
-        vec[i] = chrvec(word[i])
+        x[i] = chartensor(word[i])
 
-    return torch.from_numpy(vec)
+    return x

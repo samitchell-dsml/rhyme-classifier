@@ -1,9 +1,14 @@
+'''
+Gives a function to build a rhyming dictionary indexed by the phoneme
+string that makes the sound of the rhyme
+'''
+
 from nltk.corpus import cmudict
 import json
-import os
 
 def clean(word):
-    '''Determines whether a word contains an apostrophe, period, or number
+    '''
+    Determines whether a word contains an apostrophe, period, or number
 
     Parameters
     ----------
@@ -14,7 +19,6 @@ def clean(word):
     -------
     bool
         True if word is free from unwanted characters
-
     '''
     clean = True
 
@@ -26,7 +30,8 @@ def clean(word):
     return clean
 
 def rhyme_sound(pron):
-    '''Gives the string of phonemes which creates the rhyme sound 
+    '''
+    Gives the string of phonemes which creates the rhyme sound 
     
     Parameters
     ----------
@@ -48,17 +53,16 @@ def rhyme_sound(pron):
 
     return rhyme_sound
 
-def build_rhyme_dict():
-    '''Creates a dictionary of rhyming words
+def build_rhyme_dict(file):
+    '''
+    Creates a dictionary of rhyming words and saves it to file.
 
-    Ignores words with no rhyme
-        
-    Returns
-    -------
-    dict
-        a dictionary of rhyming words keyed by the phoneme string which
-        gives the rhyming sound
+    Ignores words with no rhyme and words with punctuation or numbers.
 
+    Parameters
+    ----------
+    file : str
+        The path of the location to save the dictionary
     '''
 
     rhyme_dict = {}
@@ -74,11 +78,5 @@ def build_rhyme_dict():
                 else:
                     rhyme_dict[sound] = [word]
     
-    return rhyme_dict
-
-
-if __name__ == '__main__':
-    rhyme_dict = build_rhyme_dict()
-
-    with open(os.path.join(os.path.dirname(__file__), 'data', 'rhyming_dict.json'), 'w') as file:
-        json.dump(rhyme_dict, file)
+    with open(file, 'w') as f:
+        json.dump(rhyme_dict, f)

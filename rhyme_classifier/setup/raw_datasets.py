@@ -1,16 +1,15 @@
+'''
+Gives a function to generate datasets for training and testing
+the neural network.
+'''
+
 import json
-import os
 from nltk.corpus.reader import wordlist
-import numpy as np
 import random
 
-data_path = os.path.join(os.path.dirname(__file__), 'data')
-dict_file = os.path.join(data_path, 'rhyming_dict.json')
-train_csv = os.path.join(data_path, 'train.csv')
-test_csv = os.path.join(data_path, 'test.csv')
-
-def generate_dataset(n,train):
-    '''Generates a dataset for the rhyme-classifier
+def generate_dataset(n, dict_file, save_file):
+    '''
+    Generates a dataset for the rhyme-classifier
 
     Generates a collection of n word pairs and a boolean value
     for whether they rhyme. The number n is partitioned into an 
@@ -23,15 +22,13 @@ def generate_dataset(n,train):
     n : int
         The number of elements in the dataset
 
-    train : bool
-        If true, write to train.csv file
-        If false, write to test.csv
+    dict_file : str
+        The path of the dictionary file to load
+
+    save_file : str
+        The path to save the data
     
     '''
-    if train:
-        write_file = train_csv
-    else:
-        write_file = test_csv
     
     with open(dict_file, 'r') as file:
         rhyme_dict = json.load(file)
@@ -60,7 +57,7 @@ def generate_dataset(n,train):
             
             line = ', '.join([word1, word2, '1'])
             
-            with open(write_file, 'a') as file:
+            with open(save_file, 'a') as file:
                 file.write(line + '\n')
               
         else:
@@ -79,12 +76,8 @@ def generate_dataset(n,train):
 
             line = ', '.join([word1, word2, '0'])
 
-            with open(write_file, 'a') as file:
+            with open(save_file, 'a') as file:
                 file.write(line + '\n')
-
-if __name__ == '__main__':
-    train = generate_dataset(50000, True)
-    test = generate_dataset(10000, False)
 
 
 
