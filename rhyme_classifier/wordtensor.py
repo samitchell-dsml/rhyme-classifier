@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 
 def chrvec(char):
     """Creates a row-vector representing the letter's position
@@ -21,8 +22,8 @@ def chrvec(char):
 
     return x
 
-def wordvec(word):
-    '''Returns a matrix representing the word 
+def wordtensor(word):
+    '''Returns a tensor representing the word 
     
     The longest word in the unix words list has 24 letters, so
     we take this as the maximum number of rows needed for our
@@ -38,14 +39,14 @@ def wordvec(word):
 
     Returns
     -------
-    numpy array
-        An array of shape (24, 26) representing the word as a
+    torch tensor
+        An tensor of shape (24, 26) representing the word as a
         matrix for processing in a neural network
     '''
 
-    v = np.zeros((24,26))
+    vec = np.zeros((24,26))
 
     for i in range (0,len(word)):
-        v[i] = chrvec(word[i])
+        vec[i] = chrvec(word[i])
 
-    return v
+    return torch.from_numpy(vec)
