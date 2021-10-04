@@ -6,7 +6,7 @@ def chrvec(char):
 
     Parameters
     ----------
-    letter: str 
+    letter : str 
         A lowercase letter from the latin alphabet
 
     Returns
@@ -33,7 +33,7 @@ def wordtensor(word):
 
     Parameters
     ----------
-    word: str
+    word : str
         A word in the English language of no more than 24 
         lowercase letters
 
