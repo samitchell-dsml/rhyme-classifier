@@ -13,7 +13,7 @@ def generate_dataset(n, dict_file, save_file):
 
     Generates a collection of n word pairs and a boolean value
     for whether they rhyme. The number n is partitioned into an 
-    approximate ratio of non-rhymes : rhymes = 9 : 1. The rhyming 
+    approximate ratio of non-rhymes : rhymes = 3 : 2. The rhyming 
     dictionary is filtered to remove sounds containing one word.
 
     Parameters
@@ -48,7 +48,7 @@ def generate_dataset(n, dict_file, save_file):
         rhyme_rand = int(10*random.random())
 
 
-        if rhyme_rand == 0:
+        if rhyme_rand in range(0, 4):
             sound = int(len(rhyme_items) * random.random())
             word_list = rhyme_items[sound][1]
 
