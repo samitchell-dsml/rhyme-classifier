@@ -23,7 +23,7 @@ def clean(word):
     clean = True
 
     for chr in word:
-        if chr in ["'", '.'] or chr.isnumeric():
+        if ord(chr) not in range(ord('a'), ord('z')+27):
             clean = False
             break
 
