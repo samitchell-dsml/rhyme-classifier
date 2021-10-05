@@ -52,13 +52,14 @@ model = NeuralNetwork()
 loss_fn = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
 
-epochs = 10
+epochs = 5
 
 for t in range(0,epochs):
-    print(f'Epoch {t+1}\n---------------------------')
+    print(f'Epoch {t+1}\n----------------------------')
     train_loop(train_dataloader, model, loss_fn, optimizer)
     test_loop(test_dataloader, model, loss_fn)
 
 print("Done!")
 
-torch.save(model.state_dict(), 'model_weights.pth')
+save_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'model_weights.pth'))
+torch.save(model.state_dict(), save_path)
