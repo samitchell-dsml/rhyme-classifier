@@ -24,8 +24,6 @@ def chartensor(char):
     x = torch.zeros((26,))
     x[i] = 1.0
 
-    print(x.shape)
-
     return x
 
 def wordtensor(word):

@@ -33,6 +33,9 @@ def generate_dataset(n, dict_file, save_file):
     with open(dict_file, 'r') as file:
         rhyme_dict = json.load(file)
 
+    with open(save_file, 'w') as file:
+        file.write('Word1,Word2,Rhyme\n')
+
 
     # filter out all sounds with only one word
     rhyme_items = [(s,l) for s,l in list(rhyme_dict.items()) if len(l) > 1]
@@ -55,7 +58,7 @@ def generate_dataset(n, dict_file, save_file):
             word1 = word_list[rand1]
             word2 = word_list[rand2]
             
-            line = ', '.join([word1, word2, '1'])
+            line = ','.join([word1, word2, '1'])
             
             with open(save_file, 'a') as file:
                 file.write(line + '\n')
@@ -74,7 +77,7 @@ def generate_dataset(n, dict_file, save_file):
             word1 = list1[rand1]
             word2 = list2[rand2]
 
-            line = ', '.join([word1, word2, '0'])
+            line = ','.join([word1, word2, '0'])
 
             with open(save_file, 'a') as file:
                 file.write(line + '\n')
