@@ -30,8 +30,8 @@ def test_loop(dataloader, model, loss_fn):
     test_loss, correct = 0, 0
 
     with torch.no_grad():
-        for X, y in dataloader:
-            pred = model(X)
+        for x, y in dataloader:
+            pred = model(x)
             test_loss += loss_fn(pred, y).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
 
@@ -44,15 +44,15 @@ data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'
 training_data = WordDataset(os.path.join(data_path, 'train.csv'))
 test_data = WordDataset(os.path.join(data_path, 'test.csv'))
 
-train_dataloader = DataLoader(training_data, batch_size=64)
-test_dataloader = DataLoader(test_data, batch_size=64)
+train_dataloader = DataLoader(training_data, batch_size=64, shuffle=True)
+test_dataloader = DataLoader(test_data, batch_size=64, shuffle=True)
 
 model = NeuralNetwork()
 
 loss_fn = nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
-epochs = 5
+epochs = 10
 
 for t in range(0,epochs):
     print(f'Epoch {t+1}\n----------------------------')

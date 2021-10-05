@@ -12,5 +12,5 @@ train_path = os.path.join(data_path, 'train.csv')
 test_path = os.path.join(data_path, 'test.csv')
 
 rhymes.build_rhyme_dict(dict_path)
-raw_datasets.generate_dataset(50000, dict_path, train_path)
-raw_datasets.generate_dataset(10000, dict_path, test_path)
+raw_datasets.generate_dataset(100000, dict_path, train_path)
+raw_datasets.generate_dataset(20000, dict_path, test_path)

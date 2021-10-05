@@ -34,8 +34,6 @@ def main(word1, word2):
     pred_prob = nn.Softmax(dim=1)(logits)
     y_pred = pred_prob.argmax(1)
 
-    print(y_pred)
-
     if y_pred.data[0] == 0:
         answer = 'do not rhyme'
     else:

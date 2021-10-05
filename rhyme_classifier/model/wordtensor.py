@@ -51,7 +51,7 @@ def wordtensor(word):
 
     x = torch.zeros((33,26))
 
-    for i in range (0,len(word)):
+    for i in range (0, len(word)):
         x[i] = chartensor(word[i])
 
     return x

@@ -29,7 +29,7 @@ class WordDataset(Dataset):
         
         self.length = len(df)
         self.x = [torch.cat((word1, word2), 0) for word1, word2 in words]
-        self.y = torch.from_numpy(df['Rhyme'].values)
+        self.y = df['Rhyme']
 
     def __len__(self):
         '''
@@ -46,4 +46,5 @@ class WordDataset(Dataset):
         index : int
             The index of the item
         '''
-        return self.x[index], self.y[index]
+
+        return (self.x[index], self.y[index])

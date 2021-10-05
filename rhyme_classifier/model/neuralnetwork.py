@@ -11,7 +11,7 @@ class NeuralNetwork(nn.Module):
         self.linear_relu_stack = nn.Sequential(
             nn.Linear(1716, 1146),
             nn.ReLU(),
-            nn.Linear(1146, 1146),
+            nn.Linear(1146,1146),
             nn.ReLU(),
             nn.Linear(1146, 2),
         )
